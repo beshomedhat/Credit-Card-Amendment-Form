@@ -1,5 +1,8 @@
+body{
+  background-color: teal;
+}
 section{
-  padding-top: 2em;
+  padding: 2em;
 }
 .formLabel{
   display: flex;
@@ -18,7 +21,14 @@ a{
   display: none;
 }
 /*  */
-.mainData{
+.mainData, .cardDetails, .btns{
   padding: 2em;
+  border-radius: 15px;
+  background-color: white;
+}
+.border{
+  padding: 2em;
+  border: 1px dashed black ;
+  border-radius: 15px;
   background-color: whitesmoke;
 }

@@ -14,6 +14,7 @@
 <body>
     <section class="container">
         <div id="myForm">
+            <!-- MainData -->
             <div class="mainData">
                 <h3 class="text-center">Main Data</h3>
                 <br>
@@ -52,27 +53,135 @@
                 <br>
             </div>
             <br>
-
-            <!-- checklist -->
-            <div class="checklist">
-                <div class="formLabel">
-                    <div for="basic-url">Reissue card/ PIN only checklist:</div>
-                    <div for="basic-url">:قائمة التحقق الخاصة باعادة اصدار بطاقة/رقم التعريف الشخصي فقط</div>
+            <!-- Card details -->
+            <div class="cardDetails">
+                <h3 class="text-center">Card details</h3>
+                <div class="alert alert-danger disabled" id="errorCardDetails" role="alert"></div>
+                <div class="row">
+                    <!-- card1 -->
+                    <div class="card1 border col-md-6 col-lg-3">
+                        <h4>Card 1</h4>
+                        <br>
+                        <div class="formLabel">
+                            <div for="basic-url">First Four Digits:</div>
+                            <div for="basic-url">:الارقام الاربعة الاولى</div>
+                        </div>
+                        <input type="number" id="firstFourCard1" class="form-control">
+                        <br>
+                        <div class="formLabel">
+                            <div for="basic-url">Last Four Digits:</div>
+                            <div for="basic-url">:الارقام الاربعة الاخيرة</div>
+                        </div>
+                        <input type="number" id="lastFourCard1" class="form-control">
+                        <br>
+                        <div class="formLabel">
+                            <div for="basic-url">Card Sero No. :</div>
+                            <div for="basic-url">:الرقم التسلسلى للبطاقة</div>
+                        </div>
+                        <input type="number" id="cardSerNo1" class="form-control">
+                    </div>
+                    <!--  -->
+                    
+                    <!-- card2 -->
+                    <div class="card2 border col-md-6 col-lg-3">
+                        <h4>Card 2</h4>
+                        <br>
+                        <div class="formLabel">
+                            <div for="basic-url">First Four Digits:</div>
+                            <div for="basic-url">:الارقام الاربعة الاولى</div>
+                        </div>
+                        <input type="number" id="firstFourCard2" class="form-control">
+                        <br>
+                        <div class="formLabel">
+                            <div for="basic-url">Last Four Digits:</div>
+                            <div for="basic-url">:الارقام الاربعة الاخيرة</div>
+                        </div>
+                        <input type="number" id="lastFourCard2" class="form-control">
+                        <br>
+                        <div class="formLabel">
+                            <div for="basic-url">Card Sero No. :</div>
+                            <div for="basic-url">:الرقم التسلسلى للبطاقة</div>
+                        </div>
+                        <input type="number" id="cardSerNo2" class="form-control">
+                    </div>
+                    <!--  -->
+                    
+                    <!-- card3 -->
+                    <div class="card3 border col-md-6 col-lg-3">
+                        <h4>Card 3</h4>
+                        <br>
+                        <div class="formLabel">
+                            <div for="basic-url">First Four Digits:</div>
+                            <div for="basic-url">:الارقام الاربعة الاولى</div>
+                        </div>
+                        <input type="number" id="firstFourCard3" class="form-control">
+                        <br>
+                        <div class="formLabel">
+                            <div for="basic-url">Last Four Digits:</div>
+                            <div for="basic-url">:الارقام الاربعة الاخيرة</div>
+                        </div>
+                        <input type="number" id="lastFourCard3" class="form-control">
+                        <br>
+                        <div class="formLabel">
+                            <div for="basic-url">Card Sero No. :</div>
+                            <div for="basic-url">:الرقم التسلسلى للبطاقة</div>
+                        </div>
+                        <input type="number" id="cardSerNo3" class="form-control">
+                    </div>
+                    <!--  -->
+                    
+                    <!-- card4 -->
+                    <div class="card4 border col-md-6 col-lg-3">
+                        <h4>Card 4</h4>
+                        <br>
+                        <div class="formLabel">
+                            <div for="basic-url">First Four Digits:</div>
+                            <div for="basic-url">:الارقام الاربعة الاولى</div>
+                        </div>
+                        <input type="number" id="firstFourCard4" class="form-control">
+                        <br>
+                        <div class="formLabel">
+                            <div for="basic-url">Last Four Digits:</div>
+                            <div for="basic-url">:الارقام الاربعة الاخيرة</div>
+                        </div>
+                        <input type="number" id="lastFourCard4" class="form-control">
+                        <br>
+                        <div class="formLabel">
+                            <div for="basic-url">Card Sero No. :</div>
+                            <div for="basic-url">:الرقم التسلسلى للبطاقة</div>
+                        </div>
+                        <input type="number" id="cardSerNo4" class="form-control">
+                    </div>
+                    <!--  -->
                 </div>
-                <!-- Modal HTML embedded directly into document -->
-                <div id="ex1" class="modal">
-                    <p>Thanks for clicking. That felt good.</p>
-                    <a href="#" rel="modal:close">Close</a>
-                </div>
-                <!-- Link to open the modal -->
-                <p><a href="#ex1" class="btn btn-success w-100" rel="modal:open">Open / افتح</a></p>
             </div>
-            
-            <!-- submit btn -->
-            <br>
-            <button class="btn btn-primary" id="submitBtn" type="submit">Submit</button>
-            <br>
+
             <!--  -->
+            <br>
+            <br>
+            <div class="btns">
+                <!-- checklist -->
+                <div class="checklist">
+                    <div class="formLabel">
+                        <div for="basic-url">Reissue card/ PIN only checklist:</div>
+                        <div for="basic-url">:قائمة التحقق الخاصة باعادة اصدار بطاقة/رقم التعريف الشخصي فقط</div>
+                    </div>
+                    <!-- Modal HTML embedded directly into document -->
+                    <div id="ex1" class="modal">
+                        <p>Thanks for clicking. That felt good.</p>
+                        <a href="#" rel="modal:close">Close</a>
+                    </div>
+                    <!-- Link to open the modal -->
+                    <p><a href="#ex1" class="btn btn-success w-100" rel="modal:open">Open / افتح</a></p>
+                </div>
+                
+                <!-- submit btn -->
+                <br>
+                <button class="btn btn-primary" id="submitBtn" type="submit">Submit</button>
+                <br>
+                <!--  -->
+            </div>
+
         </div>       
     </section>
           
