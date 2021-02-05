@@ -52,6 +52,7 @@
                 <!--  -->
                 <br>
             </div>
+            <!--  -->
             <br>
             <!-- Card details -->
             <div class="cardDetails">
@@ -154,9 +155,142 @@
                     </div>
                     <!--  -->
                 </div>
+                <br>
+                <div class="cardNoPresented">
+                    <div class="formLabel">
+                        <div for="basic-url">Card(s) not presented-stopped:</div>
+                        <div for="basic-url">:البطاقة/البطاقات التى لم يستلمها-ايقافها</div>
+                    </div>
+                    <input type="checkbox" id="cardNoPresented">
+                </div>
+                <br>
+                <div class="amendmentType">
+                    <div class="alert alert-danger disabled" id="errorAmendmentType" role="alert"></div>
+                    <div class="formLabel">
+                        <div for="basic-url">Amendment Type:</div>
+                        <div for="basic-url">:نوع التعديل</div>
+                    </div>
+                      <select class="form-control" name="amendmentType" id="amendmentType" multiple>
+                        <option value="personalDetailsAmendment">Personal details amendment / تعديل البيانات الشخصية</option>
+                        <option value="financialAmendment">Financial amendment / التعديل المالي</option>
+                        <option value="typeOfRequest">Type of Request / نوع الطلب</option>
+                      </select>
+                      <div class="formLabel">
+                        <strong>Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</strong>
+                        <strong>.اضغط مع الاستمرار على زر كنترول - الويندوز - او زر كوماند - ماك - لتحديد خيارات متعددة</strong>
+                    </div>
+                </div>
             </div>
-
             <!--  -->
+            <br>
+            <!-- Personal details amendment -->
+            <div id="personalDetailsAmendment" class="personalDetailsAmendment disabled">
+                <h3 class="text-center">Personal Details Amendment</h3>
+                <br>
+                <div class="alert alert-danger disabled" id="errorPersonalDetailsAmendment" role="alert"></div>
+                <div>
+                    <!-- personalName -->
+                    <div class="border">
+                        <input type="radio" name="personal" value="personal1">
+                        <div class="formLabel">
+                            <div for="basic-url">Name Change:</div>
+                            <div for="basic-url">:تغير الاسم</div>
+                        </div>
+                        <input type="text" id="nameChange" class="form-control">
+                    </div>
+                    <!--  -->
+                    <br>
+                    <!-- ID number /Passport number -->
+                    <div class="border">
+                        <input type="radio" name="personal" value="personal2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="formLabel">
+                                    <div for="basic-url">ID number /Passport number:</div>
+                                    <div for="basic-url">:البطاقة الشخصية / جواز السفر</div>
+                                </div>
+                                <input type="text" id="qidPersonalNo" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="formLabel">
+                                    <div for="basic-url">Valid/ Attached:</div>
+                                    <div for="basic-url">:فعّال / مرفق</div>
+                                </div>
+                                <div>
+                                    <select class="form-control" id="validAttach" name="validAttach">
+                                        <option value="" disabled selected>Select / أختر</option>
+                                        <option value="valid">Valid / فعّال</option>
+                                        <option value="attached">Attached / مرفق</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                 
+                    <!--  -->
+                    <br>
+                    <!-- contactDetailsUpdate -->
+                    <div class="border">
+                        <div class="formLabel">
+                            <strong for="basic-url">
+                                <input type="radio" name="personal" value="personal3">
+                                Contact Details Update:
+                            </strong>
+                            <strong for="basic-url">: تحديث معلومات الاتصال</strong>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 container-fluid">
+                                <div class="formLabel">
+                                    <div for="basic-url">Mobile number:</div>
+                                    <div for="basic-url">:رقم الجوال</div>
+                                </div>
+                                <input type="tel" id="mobile" class="form-control">
+                            </div>
+                            <div class="col-md-6 col-lg-4 container-fluid">
+                                <div class="formLabel">
+                                    <div for="basic-url">Residence number:</div>
+                                    <div for="basic-url">:رقم هاتف المنزل</div>
+                                </div>
+                                <input type="text" id="resNo" class="form-control">
+                            </div>
+                            <div class="col-md-6 col-lg-4 container-fluid">
+                                <div class="formLabel">
+                                    <div for="basic-url">P.O. Box:</div>
+                                    <div for="basic-url">: ص.ب.</div>
+                                </div>
+                                <input type="number" id="poBox" class="form-control">
+                            </div>
+
+                            <div class="col-md-6 col-lg-4 container-fluid">
+                                <div class="formLabel">
+                                    <div for="basic-url">Fax number:</div>
+                                    <div for="basic-url">:رقم الفاكس</div>
+                                </div>
+                                <input type="number" id="faxNo" class="form-control">
+                            </div>
+                            <div class="col-md-6 col-lg-4 container-fluid">
+                                <div class="formLabel">
+                                    <div for="basic-url">Office number:</div>
+                                    <div for="basic-url">:رقم هاتف المكتب</div>
+                                </div>
+                                <input type="number" id="officeNo" class="form-control">
+                            </div>
+                            <div class="col-md-6 col-lg-4 container-fluid">
+                                <div class="formLabel">
+                                    <div >Extension:</div>
+                                    <div >:الرقم الفرعى</div>
+                                </div>
+                                <input type="number" id="extension" class="form-control">
+                            </div>
+                            <div id="emailInp" class="col-md-12 container-fluid"></div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+                
+                <br>
+            </div>
+            <br>
             <br>
             <br>
             <div class="btns">

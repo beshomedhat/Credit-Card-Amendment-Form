@@ -1,4 +1,42 @@
 
+// check if user selectPersonalDetailsAmendment
+var selectPersonalDetailsAmendment = function(){
+  let selectElement = document.querySelector("#amendmentType")
+  let selectedValues = Array.from(selectElement.selectedOptions).map(option => option.value)
+  let count = 0
+  for(let i=0; i < selectedValues.length; i++){
+    if(selectedValues[i] == "personalDetailsAmendment"){
+      count+=1
+    }
+  }
+  if(count>0){
+    return true
+  }
+  else return false
+}
+// -------create email input----------------------------------------------
+var createEmailInput = function(){
+  let emailDiv = document.getElementById('emailInp')
+
+  let emailFormLabe = document.createElement('div')
+  emailFormLabe.classList.add("formLabel")
+
+  let emailEngLabe = document.createElement('div')
+  let emailArbLabe = document.createElement('div')
+
+  emailDiv.appendChild(emailFormLabe)
+  emailFormLabe.appendChild(emailEngLabe)
+  emailFormLabe.appendChild(emailArbLabe)
+
+  emailEngLabe.innerHTML="E-mail address:"
+  emailArbLabe.innerHTML=":البريد الالكترونى"
+
+  let emailInput = document.createElement('input')
+  emailInput.classList.add("form-control")
+  emailDiv.appendChild(emailInput)
+  emailInput.setAttribute("type",'text')
+  emailInput.setAttribute("id",'emailAdd')
+}
 // validateMainData
 var validateMainData = function(){
   var basNoReq = /^[0-9][0-9]{5}$/;
@@ -115,9 +153,129 @@ var validateCardData = function(){
 
 }
 
+// validateAmendmentType
+var validateAmendmentType = function(){
+  let selectElement = document.querySelector("#amendmentType")
+  let selectedValues = Array.from(selectElement.selectedOptions).map(option => option.value)
+  if(selectedValues.length==0){
+    $("#errorAmendmentType").css({display:"block"})
+    var colls =`<div class="formLabel">
+                  <div for="basic-url">Please choose your amendment type:</div>
+                  <div for="basic-url">:من فضلك اختر نوع التعديل </div>
+                </div>`
+    document.getElementById("errorAmendmentType").innerHTML=colls;
+    return false
+  }
+  else{
+    $("#errorAmendmentType").css({display:"none"})
+    return true 
+  }  
+}
+
+
+// validatePersonalDetailsAmendmentData
+var validatePersonalDetailsAmendmentData = function(){
+  var alphaNumReq = /^[a-zA-Z0-9]+$/;
+  var numReq = /^[0-9]+$/;
+  var mobileReq = /^[0-9]{8}$/;
+  var emailReq = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+
+  var nameChange=document.querySelector('#nameChange').value
+  var qidPersonalNo=document.querySelector('#qidPersonalNo').value
+  var validAttach=document.querySelector('#validAttach').value
+  var mobile=document.querySelector('#mobile').value
+  var resNo=document.querySelector('#resNo').value
+  var poBox=document.querySelector('#poBox').value
+  var faxNo=document.querySelector('#faxNo').value
+  var officeNo=document.querySelector('#officeNo').value
+  var extension=document.querySelector('#extension').value
+  var emailAdd=document.querySelector('#emailAdd').value
+
+
+  let colls="";
+  var count=0;
+  if(alphaNumReq.test(nameChange)==true){
+      count+=1
+  }
+  else{
+    document.querySelector('#nameChange').value=''
+  }
+  if(alphaNumReq.test(qidPersonalNo)==true && validAttach!=""){
+      count+=1
+  }
+  else{
+    document.querySelector('#qidPersonalNo').value=''
+  }
+  if(mobileReq.test(mobile)){
+      count+=1
+  }
+  else{
+    document.querySelector('#mobile').value=''
+  }
+  if(alphaNumReq.test(resNo)){
+      count+=1
+  }
+  else{
+    document.querySelector('#resNo').value=''
+  }
+  if(numReq.test(poBox)){
+      count+=1
+  }
+  else{
+    document.querySelector('#poBox').value=''
+  }
+  if(numReq.test(faxNo)){
+      count+=1
+  }
+  else{
+    document.querySelector('#faxNo').value=''
+  }
+  if(numReq.test(officeNo)){
+      count+=1
+  }
+  else{
+    document.querySelector('#officeNo').value=''
+  }
+  if(numReq.test(extension)){
+      count+=1
+  }
+  else{
+    document.querySelector('#extension').value=''
+  }
+  if(emailReq.test(emailAdd)){
+      count+=1
+  }
+  else{
+    document.querySelector('#emailAdd').value=''
+  }
+
+  if(count>0){
+    $("#errorPersonalDetailsAmendment").css({display:"none"})
+    return true
+  }
+  else{
+    $("#errorPersonalDetailsAmendment").css({display:"block"})
+    colls =`
+    <p>Name-Residence number just Alphanumeric / الاسم-رقم هاتف المنزل مكون من حروف وارقام فقط </p>
+    <p>ID number /Passport number just Alphanumeric and select if valid or Attached / البطاقة الشخصية / جواز السفر مكون من حروف وارقام فقط واختر اذا كانت فعّال او مرفق</p>
+    <p>Mobile number-P.O. Box-Fax number-Office number-Extension just numbers / رقم الجوال-ص.ب.-رقم الفاكس-رقم هاتف المكتب-الرقم الفرعى مكون من حروف وارقام فقط </p>
+    <p>mobile range is 8 digits</p>
+    `
+    document.getElementById("errorPersonalDetailsAmendment").innerHTML=colls;
+    return false;
+  }
+}
+
+// check if user selectPersonalDetailsAmendment
+var checkPersonalDetailsAmendment = function(){
+  if(selectPersonalDetailsAmendment()){
+    return validatePersonalDetailsAmendmentData()
+  }
+  else return true
+}
 
 async function fillForm() {
-  if(validateMainData() && validateCardData()){
+  if(validateMainData() && validateCardData() && validateAmendmentType() && checkPersonalDetailsAmendment()){
     const { PDFDocument } = PDFLib
     // Fetch the PDF with form fields
     const formUrl = 'https://files.fm/down.php?cf&i=nfr3wx7xv&n=test.pdf'
@@ -150,8 +308,39 @@ async function fillForm() {
     const firstFourCard4 = form.getTextField('firstFourCard4')
     const lastFourCard4 = form.getTextField('lastFourCard4')
     const cardSerNo4 = form.getTextField('cardSerNo4')
+    // -------------cardNoPresented
+
+    const cardNoPresented = form.getCheckBox('cardNotPresented')
+    document.querySelector('#cardNoPresented').checked ? cardNoPresented.check() : cardNoPresented.uncheck()
+    
 
     //----------------------------------------------------------- 
+    if(selectPersonalDetailsAmendment()){
+      var nameChange=form.getTextField('nameChange')
+      var qidPersonalNo=form.getTextField('qidPassportNo')
+      var validAttach=form.getRadioGroup('validAttach')
+      var mobile=form.getTextField('mobile')
+      var resNo=form.getTextField('resNo')
+      var poBox=form.getTextField('poBox')
+      var faxNo=form.getTextField('faxNo')
+      var officeNo=form.getTextField('officeNo')
+      var extension=form.getTextField('ext')
+      var emailAdd=form.getTextField('emailAdd')
+
+      nameChange.setText(document.querySelector('#nameChange').value)
+      qidPersonalNo.setText(document.querySelector('#qidPersonalNo').value)
+      var validAttachVal=document.querySelector('#validAttach').value
+      validAttach.select(validAttachVal)
+      mobile.setText(document.querySelector('#mobile').value)
+      resNo.setText(document.querySelector('#resNo').value)
+      poBox.setText(document.querySelector('#poBox').value)
+      faxNo.setText(document.querySelector('#faxNo').value)
+      officeNo.setText(document.querySelector('#officeNo').value)
+      extension.setText(document.querySelector('#extension').value)
+      emailAdd.setText(document.querySelector('#emailAdd').value)
+    }
+    
+
     // ----------set mainData
     baseNumber.setText(document.querySelector('#baseNumber').value)
     utdNo.setText(document.querySelector('#utdNo').value)
@@ -170,6 +359,7 @@ async function fillForm() {
     firstFourCard4.setText(document.querySelector('#firstFourCard4').value)
     lastFourCard4.setText(document.querySelector('#lastFourCard4').value)
     cardSerNo4.setText(document.querySelector('#cardSerNo4').value)
+    
     //-----------------------------------------------------------
 
     // Serialize the PDFDocument to bytes (a Uint8Array)
@@ -179,9 +369,24 @@ async function fillForm() {
     download(pdfBytes, "pdf-lib_form_creation_example.pdf", "application/pdf");
   }
 }
-
-
 document.querySelector("#submitBtn").addEventListener('click',function(){
   fillForm()
 })
 
+document.querySelector("#amendmentType").addEventListener('click',function(){
+  let selectElement = document.querySelector("#amendmentType")
+  let selectedValues = Array.from(selectElement.selectedOptions).map(option => option.value)
+  let count = 0
+  for(let i=0; i < selectedValues.length; i++){
+    if(selectedValues[i] == "personalDetailsAmendment"){
+      count+=1
+    }
+  }
+  if(count>0){
+    $("#personalDetailsAmendment").css({display:"block"})
+  }
+  else $("#personalDetailsAmendment").css({display:"none"})
+})
+
+// -------call create email input function----------------------------------------------
+createEmailInput()

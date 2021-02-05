@@ -21,7 +21,7 @@ a{
   display: none;
 }
 /*  */
-.mainData, .cardDetails, .btns{
+.mainData, .cardDetails, .btns, .personalDetailsAmendment{
   padding: 2em;
   border-radius: 15px;
   background-color: white;
