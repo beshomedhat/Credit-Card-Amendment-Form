@@ -11,3 +11,14 @@ section{
 a{
   text-decoration: none !important;
 }
+.w-100{
+  width: 100%;
+}
+.disabled{
+  display: none;
+}
+/*  */
+.mainData{
+  padding: 2em;
+  background-color: whitesmoke;
+}
