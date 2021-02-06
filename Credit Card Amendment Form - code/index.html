@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <!-- jQuery Modal -->
     <link rel="stylesheet" href="css/jquery.modal.min.css" />
+    <!-- jQuery ui -->
+    <link rel="stylesheet" href="jqueryui/jquery-ui.min.css" />
+    <link rel="stylesheet" href="jqueryui/jquery-ui.structure.min.css" />
+    <link rel="stylesheet" href="jqueryui/jquery-ui.theme.min.css" />
     <!-- myCssFile -->
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
     <section class="container">
-        <div id="myForm">
+        <form id="myForm">
             <!-- MainData -->
             <div class="mainData">
                 <h3 class="text-center">Main Data</h3>
@@ -296,13 +300,67 @@
             <div class="btns">
                 <!-- checklist -->
                 <div class="checklist">
+                    <div class="alert alert-danger disabled" id="errorAcceptTerms" role="alert"></div>
                     <div class="formLabel">
                         <div for="basic-url">Reissue card/ PIN only checklist:</div>
                         <div for="basic-url">:قائمة التحقق الخاصة باعادة اصدار بطاقة/رقم التعريف الشخصي فقط</div>
                     </div>
                     <!-- Modal HTML embedded directly into document -->
                     <div id="ex1" class="modal">
-                        <p>Thanks for clicking. That felt good.</p>
+                        <div class="formLabel">
+                            <div class="border">
+                                <p>
+                                    1. Check the Mail Tracking System using the base number to see if any card/ PIN was issued in the last 15 days.
+                                </p>
+                                <p> 
+                                    2. In case of no card/ PIN is issued, ensure the correct card number to be issued as mentioned on the form.
+                                </p>
+                                <p>
+                                    3. Ensure the required information along with place of delivery is clearly mentioned.
+                                </p>
+                                <p>
+                                    4. Ensure the expiry date of the card is still valid.
+                                </p>
+                                <p>
+                                    5. Ensure the form is satisfying one of the below conditions:
+                                        <p>a. Customer signature (SV verified) + Approved signature</p>
+                                        <p>b. Prepared by + Approved signature</p>
+                                </p>
+                                <p>
+                                    6. For reissue of card, clearly mention if the old card is shredded/ destroyed/ cut card photo copy submitted.
+                                </p>
+                                <p>
+                                    7. Ensure the amendment form is scanned in reissue queue.
+                                </p>
+                            </div>
+                            <div class="border">
+                                <p>
+                                    اولا: راجع نظام تتبع البريد باستخدام رقم الحساب الرئيسي لتأكد من انه لم يتم اصدار بطاقة / رقم تعريف شخصي خلال 15 يوما الماضية
+                                </p>
+                                <p> 
+                                    ثانيا: في حالة عدم إصدار بطاقة / رقم تعريف شخصي ، تأكد من إصدار رقم البطاقة الصحيح كما هو مذكور في النموذج.
+                                </p>
+                                <p>
+                                    ثالثا: التأكد من أن المعلومات المطلوبة مع مكان التسليم مذكورة بوضوح.
+                                </p>
+                                <p>
+                                    رابعا: تأكد من أن تاريخ انتهاء صلاحية البطاقة لا يزال ساري المفعول.
+                                </p>
+                                <p>
+                                    خامسا: تأكد من استيفاء النموذج لأحد الشروط التالية:
+                                        <p>أ. توقيع العميل -بعد مطابقة التوقيع- + توقيع معتمد</p>
+                                        <p>ب. أعدَّ من قبل + توقيع معتمد</p>
+                                </p>
+                                <p>
+                                    سادسا: لإعادة إصدار البطاقة ، اذكر بوضوح ما إذا كانت البطاقة القديمة تم تمزيقها / إتلافها / قطع صورة مقدمة.
+                                </p>
+                                <p>
+                                    سابعا: تأكد من إرفاق نسخة من استمارة التعديل فى قائمة إعادة الإصدار
+                                </p>
+                            </div>
+                        </div>
+                        <br>
+                        <a href="#"  id="acceptBtn" rel="modal:close" class="btn btn-primary">Accept</a>
                         <a href="#" rel="modal:close">Close</a>
                     </div>
                     <!-- Link to open the modal -->
@@ -316,7 +374,7 @@
                 <!--  -->
             </div>
 
-        </div>       
+        </form>       
     </section>
           
     <!-- -----------------------------------------------------------------  -->
@@ -332,6 +390,8 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- jQuery Modal -->
     <script src="js/jquery.modal.min.js"></script>
+    <!-- jQuery ui -->
+    <script src="jqueryui/jquery-ui.min.js"></script>
     <!-- myJsFile -->
     <script src="js/index.js"></script>
 </body>

@@ -1,4 +1,19 @@
 
+// date 
+$("#date").datepicker({
+  dateFormat: "ddmmyy",
+  changeMonth: true,
+  changeYear: true,
+  minDate:'-1m',
+  maxDate:"+0d"
+})
+// clear all input
+var clearAllInputs = function(){
+  var inpVal =  document.querySelectorAll("input")
+  for(let i=0; i<inpVal.length; i++){
+    inpVal[i].value ="";
+  }
+}
 // check if user selectPersonalDetailsAmendment
 var selectPersonalDetailsAmendment = function(){
   let selectElement = document.querySelector("#amendmentType")
@@ -41,7 +56,6 @@ var createEmailInput = function(){
 var validateMainData = function(){
   var basNoReq = /^[0-9][0-9]{5}$/;
   var utdNoReq = /^[0-9]+$/;
-  // var dateReq = /^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/;
   var dateReq = /^(0?[1-9]|[12][0-9]|3[01])(0?[1-9]|1[012])\d{4}$/;
   var custNameReq = /^[a-zA-Z ]+$/;
 
@@ -273,9 +287,26 @@ var checkPersonalDetailsAmendment = function(){
   }
   else return true
 }
+var acceptTermsValue=false
+document.querySelector("#acceptBtn").addEventListener('click',function(){
+  acceptTermsValue=true
+})
+
+var getAcceptTermsValue = function(){
+  if(acceptTermsValue){
+    $("#errorAcceptTerms").css({display:"none"})
+    return true;
+  }
+  else{
+    $("#errorAcceptTerms").css({display:"block"})
+    colls =`<p>You must accept the terms</p> `
+    document.getElementById("errorAcceptTerms").innerHTML=colls;
+    return false;
+  }
+}
 
 async function fillForm() {
-  if(validateMainData() && validateCardData() && validateAmendmentType() && checkPersonalDetailsAmendment()){
+  if(validateMainData() && validateCardData() && validateAmendmentType() && checkPersonalDetailsAmendment() && getAcceptTermsValue()){
     const { PDFDocument } = PDFLib
     // Fetch the PDF with form fields
     const formUrl = 'https://files.fm/down.php?cf&i=nfr3wx7xv&n=test.pdf'
@@ -367,6 +398,8 @@ async function fillForm() {
 
     // Trigger the browser to download the PDF document
     download(pdfBytes, "pdf-lib_form_creation_example.pdf", "application/pdf");
+    localStorage.clear()
+    clearAllInputs()
   }
 }
 document.querySelector("#submitBtn").addEventListener('click',function(){
@@ -390,3 +423,32 @@ document.querySelector("#amendmentType").addEventListener('click',function(){
 
 // -------call create email input function----------------------------------------------
 createEmailInput()
+
+//-------get all input
+var getAllInputs = function(){
+  var inpVal =  document.querySelectorAll("input")
+  for(let i=0; i<inpVal.length; i++){
+    inpVal[i].addEventListener("keyup",function(){
+      localStorage.setItem(inpVal[i].id,JSON.stringify(inpVal[i].value));
+    })
+  }
+}
+getAllInputs()
+
+//-------set all input
+var setAllInputs = function(){
+  var inpVal =  document.querySelectorAll("input")
+  for(let i=0; i<inpVal.length; i++){
+    if(localStorage.getItem(inpVal[i].id)==null){
+      inpVal[i].value ="";
+    }
+    else{
+      inpVal[i].value = JSON.parse(localStorage.getItem(inpVal[i].id));
+    }
+  }
+}
+setAllInputs()
+// cancle reload
+$("#myForm").submit(function(e) {
+  e.preventDefault();
+});
