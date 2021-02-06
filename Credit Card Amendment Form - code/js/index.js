@@ -190,6 +190,7 @@ var validateAmendmentType = function(){
 // validatePersonalDetailsAmendmentData
 var validatePersonalDetailsAmendmentData = function(){
   var alphaNumReq = /^[a-zA-Z0-9]+$/;
+  var nameReq = /^[a-zA-Z0-9 ]+$/;
   var numReq = /^[0-9]+$/;
   var mobileReq = /^[0-9]{8}$/;
   var emailReq = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
@@ -208,7 +209,7 @@ var validatePersonalDetailsAmendmentData = function(){
 
   let colls="";
   var count=0;
-  if(alphaNumReq.test(nameChange)==true){
+  if(nameReq.test(nameChange)==true){
       count+=1
   }
   else{
@@ -360,8 +361,11 @@ async function fillForm() {
 
       nameChange.setText(document.querySelector('#nameChange').value)
       qidPersonalNo.setText(document.querySelector('#qidPersonalNo').value)
-      var validAttachVal=document.querySelector('#validAttach').value
-      validAttach.select(validAttachVal)
+      if(document.querySelector('#validAttach').value !=""){
+        qidPersonalNo.setText(document.querySelector('#qidPersonalNo').value)  
+        var validAttachVal=document.querySelector('#validAttach').value
+        validAttach.select(validAttachVal)
+       }
       mobile.setText(document.querySelector('#mobile').value)
       resNo.setText(document.querySelector('#resNo').value)
       poBox.setText(document.querySelector('#poBox').value)
